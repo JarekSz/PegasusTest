@@ -7,6 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PTDocument.h"
+#import "PTAppDelegate.h"
+#import "PTCroppingView.h"
+
 
 @class PTFlipsideViewController;
 
@@ -14,9 +18,16 @@
 - (void)flipsideViewControllerDidFinish:(PTFlipsideViewController *)controller;
 @end
 
-@interface PTFlipsideViewController : UIViewController
+@interface PTFlipsideViewController : UIViewController <UIGestureRecognizerDelegate>
 
+@property (nonatomic, weak) PTAppDelegate *appDelegate;
 @property (weak, nonatomic) id <PTFlipsideViewControllerDelegate> delegate;
+//@property (strong, nonatomic) PTDocument *myDocument;
+@property (strong, nonatomic) IBOutlet UIImageView *docView;
+@property (strong, nonatomic) IBOutlet PTCroppingView *cropView;
+
+@property int index;
+@property (nonatomic, strong) PTDocument *currDocument;
 
 - (IBAction)done:(id)sender;
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD68A4E61A0690E000ADC800 /* PTCroppingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD68A4E51A0690E000ADC800 /* PTCroppingView.m */; };
 		CDCCBAF41A05AFA7006CC981 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCCBAF31A05AFA7006CC981 /* Foundation.framework */; };
 		CDCCBAF61A05AFA7006CC981 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCCBAF51A05AFA7006CC981 /* CoreGraphics.framework */; };
 		CDCCBAF81A05AFA7006CC981 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCCBAF71A05AFA7006CC981 /* UIKit.framework */; };
@@ -22,6 +23,11 @@
 		CDCCBB181A05AFA7006CC981 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCCBAF71A05AFA7006CC981 /* UIKit.framework */; };
 		CDCCBB201A05AFA7006CC981 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDCCBB1E1A05AFA7006CC981 /* InfoPlist.strings */; };
 		CDCCBB221A05AFA7006CC981 /* PegasusTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCCBB211A05AFA7006CC981 /* PegasusTestTests.m */; };
+		CDCCBB2D1A05B108006CC981 /* icoCameraCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCCBB2B1A05B108006CC981 /* icoCameraCircle.png */; };
+		CDCCBB2E1A05B108006CC981 /* icoCameraCirclePressed.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCCBB2C1A05B108006CC981 /* icoCameraCirclePressed.png */; };
+		CDCCBB301A05B240006CC981 /* icoCalQuit.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCCBB2F1A05B240006CC981 /* icoCalQuit.png */; };
+		CDCCBB351A05C2E4006CC981 /* PTDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCCBB341A05C2E4006CC981 /* PTDocument.m */; };
+		CDCCBB381A05D459006CC981 /* PTUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCCBB371A05D459006CC981 /* PTUtilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CD68A4E41A0690E000ADC800 /* PTCroppingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTCroppingView.h; sourceTree = "<group>"; };
+		CD68A4E51A0690E000ADC800 /* PTCroppingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTCroppingView.m; sourceTree = "<group>"; };
 		CDCCBAF01A05AFA7006CC981 /* PegasusTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PegasusTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDCCBAF31A05AFA7006CC981 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CDCCBAF51A05AFA7006CC981 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -56,6 +64,13 @@
 		CDCCBB1D1A05AFA7006CC981 /* PegasusTestTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PegasusTestTests-Info.plist"; sourceTree = "<group>"; };
 		CDCCBB1F1A05AFA7006CC981 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CDCCBB211A05AFA7006CC981 /* PegasusTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PegasusTestTests.m; sourceTree = "<group>"; };
+		CDCCBB2B1A05B108006CC981 /* icoCameraCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icoCameraCircle.png; sourceTree = "<group>"; };
+		CDCCBB2C1A05B108006CC981 /* icoCameraCirclePressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icoCameraCirclePressed.png; sourceTree = "<group>"; };
+		CDCCBB2F1A05B240006CC981 /* icoCalQuit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icoCalQuit.png; sourceTree = "<group>"; };
+		CDCCBB331A05C2E4006CC981 /* PTDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDocument.h; sourceTree = "<group>"; };
+		CDCCBB341A05C2E4006CC981 /* PTDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDocument.m; sourceTree = "<group>"; };
+		CDCCBB361A05D459006CC981 /* PTUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTUtilities.h; sourceTree = "<group>"; };
+		CDCCBB371A05D459006CC981 /* PTUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTUtilities.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,11 +132,17 @@
 			children = (
 				CDCCBB021A05AFA7006CC981 /* PTAppDelegate.h */,
 				CDCCBB031A05AFA7006CC981 /* PTAppDelegate.m */,
+				CDCCBB331A05C2E4006CC981 /* PTDocument.h */,
+				CDCCBB341A05C2E4006CC981 /* PTDocument.m */,
 				CDCCBB051A05AFA7006CC981 /* Main.storyboard */,
 				CDCCBB081A05AFA7006CC981 /* PTMainViewController.h */,
 				CDCCBB091A05AFA7006CC981 /* PTMainViewController.m */,
 				CDCCBB0B1A05AFA7006CC981 /* PTFlipsideViewController.h */,
 				CDCCBB0C1A05AFA7006CC981 /* PTFlipsideViewController.m */,
+				CD68A4E41A0690E000ADC800 /* PTCroppingView.h */,
+				CD68A4E51A0690E000ADC800 /* PTCroppingView.m */,
+				CDCCBB361A05D459006CC981 /* PTUtilities.h */,
+				CDCCBB371A05D459006CC981 /* PTUtilities.m */,
 				CDCCBB0E1A05AFA7006CC981 /* Images.xcassets */,
 				CDCCBAFA1A05AFA7006CC981 /* Supporting Files */,
 			);
@@ -131,6 +152,9 @@
 		CDCCBAFA1A05AFA7006CC981 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CDCCBB2B1A05B108006CC981 /* icoCameraCircle.png */,
+				CDCCBB2C1A05B108006CC981 /* icoCameraCirclePressed.png */,
+				CDCCBB2F1A05B240006CC981 /* icoCalQuit.png */,
 				CDCCBAFB1A05AFA7006CC981 /* PegasusTest-Info.plist */,
 				CDCCBAFC1A05AFA7006CC981 /* InfoPlist.strings */,
 				CDCCBAFF1A05AFA7006CC981 /* main.m */,
@@ -234,9 +258,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDCCBB2E1A05B108006CC981 /* icoCameraCirclePressed.png in Resources */,
+				CDCCBB2D1A05B108006CC981 /* icoCameraCircle.png in Resources */,
 				CDCCBB0F1A05AFA7006CC981 /* Images.xcassets in Resources */,
 				CDCCBAFE1A05AFA7006CC981 /* InfoPlist.strings in Resources */,
 				CDCCBB071A05AFA7006CC981 /* Main.storyboard in Resources */,
+				CDCCBB301A05B240006CC981 /* icoCalQuit.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,10 +282,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDCCBB381A05D459006CC981 /* PTUtilities.m in Sources */,
 				CDCCBB0D1A05AFA7006CC981 /* PTFlipsideViewController.m in Sources */,
+				CD68A4E61A0690E000ADC800 /* PTCroppingView.m in Sources */,
 				CDCCBB0A1A05AFA7006CC981 /* PTMainViewController.m in Sources */,
 				CDCCBB041A05AFA7006CC981 /* PTAppDelegate.m in Sources */,
 				CDCCBB001A05AFA7006CC981 /* main.m in Sources */,
+				CDCCBB351A05C2E4006CC981 /* PTDocument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +497,7 @@
 				CDCCBB271A05AFA7006CC981 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CDCCBB281A05AFA7006CC981 /* Build configuration list for PBXNativeTarget "PegasusTestTests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +506,7 @@
 				CDCCBB2A1A05AFA7006CC981 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -7,12 +7,29 @@
 //
 
 #import "PTAppDelegate.h"
+#import "PTUtilities.h"
+
 
 @implementation PTAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    _scannedDocuments = [PTUtilities unarchiveScannedDocs];
+    
+    
+    
+//    [_scannedDocuments removeLastObject];
+    
+    
+    if (_scannedDocuments) {
+        self.myDocument = [_scannedDocuments lastObject];
+    }
+    
+    if (_myDocument == nil) {
+        self.myDocument = [[PTDocument alloc] init];
+    }
+
     return YES;
 }
 							

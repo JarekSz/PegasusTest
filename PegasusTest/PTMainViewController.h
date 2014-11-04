@@ -7,7 +7,13 @@
 //
 
 #import "PTFlipsideViewController.h"
+#import "PTAppDelegate.h"
 
-@interface PTMainViewController : UIViewController <PTFlipsideViewControllerDelegate>
+
+@interface PTMainViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate,PTFlipsideViewControllerDelegate>
+
+@property (nonatomic, weak) PTAppDelegate *appDelegate;
+@property (nonatomic, strong) PTFlipsideViewController *flipsideView;
+//@property (nonatomic, strong) NSMutableArray *scannedDocuments;
 
 @end
