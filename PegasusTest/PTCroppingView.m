@@ -8,19 +8,9 @@
 
 #import "PTCroppingView.h"
 
-#define APPROX 10
+#define APPROX 20
 
 @interface PTCroppingView ()
-
-//@property CGFloat top;
-//@property CGFloat bottom;
-//@property CGFloat left;
-//@property CGFloat right;
-
-//@property CGPoint leftTop;
-//@property CGPoint rightTop;
-//@property CGPoint leftBottom;
-//@property CGPoint rightBottom;
 
 @end
 
@@ -137,6 +127,8 @@
             _bottom += vertical;
             break;
     }
+    
+    _side = CENTER;
     
     [self setNeedsDisplay];
 }

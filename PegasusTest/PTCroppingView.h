@@ -19,15 +19,9 @@ typedef enum : NSUInteger {
 @interface PTCroppingView : UIView
 
 @property bool initialized;
-
 @property MOVE_SIDE side;
-
-//@property float horizontal;
-//@property float vertical;
-
 @property CGPoint startPt;
 @property CGPoint endPt;
-
 @property CGFloat top;
 @property CGFloat bottom;
 @property CGFloat left;

@@ -17,19 +17,10 @@
     // Override point for customization after application launch.
     _scannedDocuments = [PTUtilities unarchiveScannedDocs];
     
+    if (_scannedDocuments == nil) {
+        self.scannedDocuments = [[NSMutableArray alloc] init];
+    }
     
-    
-//    [_scannedDocuments removeLastObject];
-    
-    
-//    if (_scannedDocuments) {
-//        self.myDocument = [_scannedDocuments lastObject];
-//    }
-//    
-//    if (_myDocument == nil) {
-//        self.myDocument = [[PTDocument alloc] init];
-//    }
-
     return YES;
 }
 							

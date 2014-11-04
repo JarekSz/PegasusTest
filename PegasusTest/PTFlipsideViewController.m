@@ -20,6 +20,11 @@
 
 @implementation PTFlipsideViewController
 
+
+- (BOOL) prefersStatusBarHidden {
+    return YES;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -28,23 +33,9 @@
     
     if ([_appDelegate.scannedDocuments count] > 0)
     {
-        // last document
-        _index = [_appDelegate.scannedDocuments count] - 1;
+        self.currImage = [_appDelegate.scannedDocuments objectAtIndex:*_index];
         
-//        self.currDocument = [_appDelegate.scannedDocuments objectAtIndex:_index];
-
-//        UIImage *image = _currDocument.image;
-//        UIImage *image = [UIImage imageNamed:@"cigars.png"];
-        self.currImage = [_appDelegate.scannedDocuments objectAtIndex:_index];
-        
-        self.docView = [[UIImageView alloc] initWithImage:_currImage];
-        
-        CGRect frame = CGRectMake(0, 44, 320, 524);
-        [_docView setFrame:frame];
-        
-        _docView.image = _currImage;
-        
-        [self.view addSubview:_docView];
+        [_imageView setImage:_currImage];
         
         //
         // swipping left
@@ -80,215 +71,79 @@
 
 - (void)handleRightSwipe:(UITapGestureRecognizer *)recognizer
 {
-    if (_index > 0) {
-        _index--;
+    if (_cropping) {
+        return;
     }
     
-//    self.currDocument = nil;
-//    self.docView = nil;
+    if (*_index > 0) {
+        (*_index)--;
+    }
     
-    self.currImage = [_appDelegate.scannedDocuments objectAtIndex:_index];
+    self.currImage = [_appDelegate.scannedDocuments objectAtIndex:*_index];
     
-//    UIImage *image = _currDocument.image;
-//    UIImage *image = [UIImage imageNamed:@"hookah.png"];
-    
-    self.docView = [[UIImageView alloc] initWithImage:_currImage];
-    
-    CGRect frame = CGRectMake(0, 44, 320, 524);
-    [_docView setFrame:frame];
-    
-    [_docView setImage:_currImage];
-    
-    [self.view addSubview:_docView];
-    
+    [_imageView setImage:_currImage];
 
-//    if (_mode > 0) {
-//        _mode--;
-//        
-//        CATransition *transition = [CATransition animation];
-//        transition.duration = 0.5;
-//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//        transition.type = kCATransitionPush;
-//        transition.subtype = kCATransitionFromLeft;
-//        transition.delegate = self;
-//        [self.view.layer addAnimation:transition forKey:nil];
-//        
-//        [_scrollView setContentOffset:_initialOffset];
-//    }
-//    
-//    [self showMessage];
 }
 
 - (void)handleLeftSwipe:(UITapGestureRecognizer *)recognizer
 {
-    NSInteger last = [_appDelegate.scannedDocuments count] - 1;
-    if (_index < last) {
-        _index++;
+    if (_cropping) {
+        return;
     }
     
-//    self.currDocument = nil;
-    self.docView = nil;
+    NSInteger last = [_appDelegate.scannedDocuments count] - 1;
+    if (*_index < last) {
+        (*_index)++;
+    }
     
-    self.currImage = [_appDelegate.scannedDocuments objectAtIndex:_index];
+    self.currImage = [_appDelegate.scannedDocuments objectAtIndex:*_index];
     
-//    UIImage *image = _currDocument.image;
-//    UIImage *image = [UIImage imageNamed:@"ecigarettes.png"];
+    [_imageView setImage:_currImage];
     
-    self.docView = [[UIImageView alloc] initWithImage:_currImage];
-    
-    CGRect frame = CGRectMake(0, 44, 320, 524);
-    [_docView setFrame:frame];
-    
-    [_docView setImage:_currImage];
-    
-    [self.view addSubview:_docView];
-    
-
-    
-//    if (_index == LAST)
-//    {
-//        AppSpireSuccessViewController *success = [[AppSpireSuccessViewController alloc] initWithNibName:@"AppSpireSuccessViewController" bundle:nil];
-//        
-//        success.task = _task;
-//        
-//        [self.navigationController pushViewController:success animated:YES];
-//        
-//        [self.tabBarController.tabBar setHidden:YES];
-//        
-//        _pageControl.hidden = YES;
-//        
-//        self.pageControl = nil;
-//        
-//        _mode = CIGARS;
-//    }
-//    else
-//    {
-//        CATransition *transition = [CATransition animation];
-//        transition.duration = 0.5;
-//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//        transition.type = kCATransitionPush;
-//        transition.subtype = kCATransitionFromRight;
-//        transition.delegate = self;
-//        [self.view.layer addAnimation:transition forKey:nil];
-//        
-//        [_docView setContentOffset:_initialOffset];
-//    }
 }
 
 #pragma mark - Actions
 
 - (IBAction)done:(id)sender
 {
+    self.cropping = NO;
+    
+    self.cropView = nil;
+    
+    _appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    if (_cropView)
+    {
+        CGFloat width = _cropView.right - _cropView.left;
+        CGFloat height = _cropView.bottom - _cropView.top;
+        
+        CGSize size = CGSizeMake(width, height); //[_currImage size];
+        
+        UIImage *newImage = [self squareImageWithImage:_currImage scaledToSize:size];
+        
+        [_imageView setImage:newImage];
+        
+        NSInteger index = [_appDelegate.scannedDocuments indexOfObject:_currImage];
+        
+        [_appDelegate.scannedDocuments replaceObjectAtIndex:index withObject:newImage];
+        
+        [PTUtilities archiveScannedDocs:_appDelegate.scannedDocuments];
+    }
+
     [self.delegate flipsideViewControllerDidFinish:self];
 }
 
 - (IBAction)crop:(id)sender
 {
+    self.cropping = YES;
     
-//    double ratio;
-//    double delta;
-//    CGPoint offset;
-
-//    float oldWidth = abs(_appDelegate.myDocument.docSize.width);
-//    float oldHeight = abs(_appDelegate.myDocument.docSize.height);
-//  
-//    
-//    NSLog(@"OLD width:%f, height:%f", oldWidth, oldHeight);
-//    
+    CGRect rect = _imageView.frame;
     
-//    float newWidth = abs(_cropView.right - _cropView.left);
-//    float newHeight = abs(_cropView.top - _cropView.bottom);
+    self.cropView = [[PTCroppingView alloc] initWithFrame:rect];
     
-//
-//    NSLog(@"NEW width:%f, height:%f", newWidth, newHeight);
+    [_cropView setBackgroundColor:[UIColor clearColor]];
     
-    _appDelegate = [[UIApplication sharedApplication] delegate];
-    
-//    UIImage *image = _currDocument.image;
-    
-    CGSize size = [_currImage size];
-    
-    
-    UIImage *newImage = [self squareImageWithImage:_currImage scaledToSize:size];
-    
-//    _currDocument.imageData = UIImageJPEGRepresentation(newImage, 0.05f);
-    [_docView setImage:newImage];
-    
-    [PTUtilities archiveScannedDocs:_appDelegate.scannedDocuments];
-    
-    return;
-    
-    
-//    // Create rectangle that represents a cropped image
-//    // from the middle of the existing image
-//    CGRect clippedRect = CGRectMake(_cropView.left, _cropView.top, newWidth, newHeight);
-//    
-//    // Create bitmap image from original image data,
-//    // using rectangle to specify desired crop area
-//    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], clippedRect);
-//    UIImage *newImage = [UIImage imageWithCGImage:imageRef];
-//    
-//    CGSize newSize = [newImage size];
-//    
-//    
-//    //calculate scale factor and offset
-//    if (newImage.size.width > newImage.size.height) {
-//        ratio = newSize.width / newImage.size.width;
-//        delta = (ratio*newImage.size.width - ratio*newImage.size.height);
-//        offset = CGPointMake(delta/2, 0);
-//    } else {
-//        ratio = newSize.width / newImage.size.height;
-//        delta = (ratio*newImage.size.height - ratio*newImage.size.width);
-//        offset = CGPointMake(0, delta/2);
-//    }
-    
-    
-//    //make the final clipping rect based on the calculated values
-//    CGRect clippedRect = CGRectMake(-offset.x, -offset.y,
-//                                    (ratio * image.size.width) + delta,
-//                                    (ratio * image.size.height) + delta);
-    
-    
-    // Create bitmap image from original image data,
-    
-    // using rectangle to specify desired crop area
-    
-//    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], clippedRect);
-//    
-//    UIImage *newImage = [UIImage imageWithCGImage:imageRef];
-    
-    
-    
-//    CGSize newSize = [newImage size];
-//    
-//    
-    
-//    float scaleX = size.width / newSize.width;
-//    
-//    float scaleY = size.height / newSize.height;
-//    
-//    
-//    
-//    newImage = [self resizeImage:image newSize:CGSizeMake(newSize.width*scaleX, newSize.height*scaleY)];
-//    
-//    
-//    
-//    CGImageRelease(imageRef);
-//    
-//    
-//    
-//    // Upload image
-//    
-//    _appDelegate.myDocument.imageData = UIImageJPEGRepresentation(newImage, 0.05f);
-//    
-//    
-//    
-//    //    [_docView setFrame:CGRectMake(-_cropView.left, -_cropView.top, oldWidth, oldHeight)];
-//    
-//    
-//    
-//    _docView.image = newImage;
-    
+    [self.view addSubview:_cropView];
 }
 
 - (UIImage *)squareImageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
@@ -296,17 +151,20 @@
     double delta;
     CGPoint offset;
     
+    CGFloat width = _cropView.right - _cropView.left;
+    CGFloat height = _cropView.bottom - _cropView.top;
+    
     //make a new square size, that is the resized imaged width
-    CGSize sz = CGSizeMake(newSize.width, newSize.width);
+    CGSize sz = CGSizeMake(width, height);
     
     //figure out if the picture is landscape or portrait, then
     //calculate scale factor and offset
     if (image.size.width > image.size.height) {
-        ratio = newSize.width / image.size.width;
+        ratio = width / image.size.width;
         delta = (ratio*image.size.width - ratio*image.size.height);
         offset = CGPointMake(delta/2, 0);
     } else {
-        ratio = newSize.width / image.size.height;
+        ratio = height / image.size.height;
         delta = (ratio*image.size.height - ratio*image.size.width);
         offset = CGPointMake(0, delta/2);
     }
@@ -331,30 +189,6 @@
     
     return newImage;
 }
-
-//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    [super touchesBegan:touches withEvent:event];
-//    
-//    UITouch *touch = [[event allTouches] anyObject];
-//    CGPoint touchLocation = [touch locationInView:_docView];
-//    
-//    if (CGPointEqualToPoint(_pt1, CGPointZero)) {
-//        _pt1 = touchLocation;
-//    }
-//    else {
-//        _pt2 = touchLocation;
-//    }
-//}
-//
-//-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-//    [super touchesMoved:touches withEvent:event];
-//    
-//}
-//
-//-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-//    [super touchesEnded:touches withEvent:event];
-//    
-//}
 
 #pragma mark -
 #pragma mark - Scale Image

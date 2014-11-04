@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PTDocument.h"
 #import "PTAppDelegate.h"
 #import "PTCroppingView.h"
 
@@ -22,14 +21,12 @@
 
 @property (nonatomic, weak) PTAppDelegate *appDelegate;
 @property (weak, nonatomic) id <PTFlipsideViewControllerDelegate> delegate;
-//@property (strong, nonatomic) PTDocument *myDocument;
-@property (strong, nonatomic) UIImageView *docView;
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 //dynamic
 @property (strong, nonatomic) PTCroppingView *cropView;
-
-@property int index;
-//@property (nonatomic, strong) PTDocument *currDocument;
+@property NSInteger *index;
 @property (nonatomic, strong) UIImage *currImage;
+@property BOOL cropping;
 
 - (IBAction)done:(id)sender;
 

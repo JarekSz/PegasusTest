@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CD0352A81A086E8B009D285E /* cigars.png in Resources */ = {isa = PBXBuildFile; fileRef = CD0352A31A086E8B009D285E /* cigars.png */; };
-		CD0352A91A086E8B009D285E /* hookah.png in Resources */ = {isa = PBXBuildFile; fileRef = CD0352A41A086E8B009D285E /* hookah.png */; };
-		CD0352AA1A086E8B009D285E /* ecigarettes.png in Resources */ = {isa = PBXBuildFile; fileRef = CD0352A51A086E8B009D285E /* ecigarettes.png */; };
-		CD0352AB1A086E8B009D285E /* snuff.png in Resources */ = {isa = PBXBuildFile; fileRef = CD0352A61A086E8B009D285E /* snuff.png */; };
-		CD0352AC1A086E8B009D285E /* snus.png in Resources */ = {isa = PBXBuildFile; fileRef = CD0352A71A086E8B009D285E /* snus.png */; };
+		CD0352AE1A089862009D285E /* icoCalMail.png in Resources */ = {isa = PBXBuildFile; fileRef = CD0352AD1A089862009D285E /* icoCalMail.png */; };
+		CD0352B01A08AA03009D285E /* icoCalBW.png in Resources */ = {isa = PBXBuildFile; fileRef = CD0352AF1A08AA03009D285E /* icoCalBW.png */; };
+		CD0352B21A08B8EE009D285E /* icoCalDel.png in Resources */ = {isa = PBXBuildFile; fileRef = CD0352B11A08B8EE009D285E /* icoCalDel.png */; };
 		CD68A4E61A0690E000ADC800 /* PTCroppingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD68A4E51A0690E000ADC800 /* PTCroppingView.m */; };
 		CDCCBAF41A05AFA7006CC981 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCCBAF31A05AFA7006CC981 /* Foundation.framework */; };
 		CDCCBAF61A05AFA7006CC981 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCCBAF51A05AFA7006CC981 /* CoreGraphics.framework */; };
@@ -31,7 +29,6 @@
 		CDCCBB2D1A05B108006CC981 /* icoCameraCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCCBB2B1A05B108006CC981 /* icoCameraCircle.png */; };
 		CDCCBB2E1A05B108006CC981 /* icoCameraCirclePressed.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCCBB2C1A05B108006CC981 /* icoCameraCirclePressed.png */; };
 		CDCCBB301A05B240006CC981 /* icoCalQuit.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCCBB2F1A05B240006CC981 /* icoCalQuit.png */; };
-		CDCCBB351A05C2E4006CC981 /* PTDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCCBB341A05C2E4006CC981 /* PTDocument.m */; };
 		CDCCBB381A05D459006CC981 /* PTUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCCBB371A05D459006CC981 /* PTUtilities.m */; };
 /* End PBXBuildFile section */
 
@@ -46,11 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CD0352A31A086E8B009D285E /* cigars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cigars.png; sourceTree = "<group>"; };
-		CD0352A41A086E8B009D285E /* hookah.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hookah.png; sourceTree = "<group>"; };
-		CD0352A51A086E8B009D285E /* ecigarettes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ecigarettes.png; sourceTree = "<group>"; };
-		CD0352A61A086E8B009D285E /* snuff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snuff.png; sourceTree = "<group>"; };
-		CD0352A71A086E8B009D285E /* snus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snus.png; sourceTree = "<group>"; };
+		CD0352AD1A089862009D285E /* icoCalMail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icoCalMail.png; sourceTree = "<group>"; };
+		CD0352AF1A08AA03009D285E /* icoCalBW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icoCalBW.png; sourceTree = "<group>"; };
+		CD0352B11A08B8EE009D285E /* icoCalDel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icoCalDel.png; sourceTree = "<group>"; };
 		CD68A4E41A0690E000ADC800 /* PTCroppingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTCroppingView.h; sourceTree = "<group>"; };
 		CD68A4E51A0690E000ADC800 /* PTCroppingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTCroppingView.m; sourceTree = "<group>"; };
 		CDCCBAF01A05AFA7006CC981 /* PegasusTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PegasusTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,8 +72,6 @@
 		CDCCBB2B1A05B108006CC981 /* icoCameraCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icoCameraCircle.png; sourceTree = "<group>"; };
 		CDCCBB2C1A05B108006CC981 /* icoCameraCirclePressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icoCameraCirclePressed.png; sourceTree = "<group>"; };
 		CDCCBB2F1A05B240006CC981 /* icoCalQuit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icoCalQuit.png; sourceTree = "<group>"; };
-		CDCCBB331A05C2E4006CC981 /* PTDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDocument.h; sourceTree = "<group>"; };
-		CDCCBB341A05C2E4006CC981 /* PTDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDocument.m; sourceTree = "<group>"; };
 		CDCCBB361A05D459006CC981 /* PTUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTUtilities.h; sourceTree = "<group>"; };
 		CDCCBB371A05D459006CC981 /* PTUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTUtilities.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,8 +135,6 @@
 			children = (
 				CDCCBB021A05AFA7006CC981 /* PTAppDelegate.h */,
 				CDCCBB031A05AFA7006CC981 /* PTAppDelegate.m */,
-				CDCCBB331A05C2E4006CC981 /* PTDocument.h */,
-				CDCCBB341A05C2E4006CC981 /* PTDocument.m */,
 				CDCCBB051A05AFA7006CC981 /* Main.storyboard */,
 				CDCCBB081A05AFA7006CC981 /* PTMainViewController.h */,
 				CDCCBB091A05AFA7006CC981 /* PTMainViewController.m */,
@@ -162,14 +153,12 @@
 		CDCCBAFA1A05AFA7006CC981 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				CD0352A31A086E8B009D285E /* cigars.png */,
-				CD0352A41A086E8B009D285E /* hookah.png */,
-				CD0352A51A086E8B009D285E /* ecigarettes.png */,
-				CD0352A61A086E8B009D285E /* snuff.png */,
-				CD0352A71A086E8B009D285E /* snus.png */,
 				CDCCBB2B1A05B108006CC981 /* icoCameraCircle.png */,
 				CDCCBB2C1A05B108006CC981 /* icoCameraCirclePressed.png */,
 				CDCCBB2F1A05B240006CC981 /* icoCalQuit.png */,
+				CD0352AF1A08AA03009D285E /* icoCalBW.png */,
+				CD0352AD1A089862009D285E /* icoCalMail.png */,
+				CD0352B11A08B8EE009D285E /* icoCalDel.png */,
 				CDCCBAFB1A05AFA7006CC981 /* PegasusTest-Info.plist */,
 				CDCCBAFC1A05AFA7006CC981 /* InfoPlist.strings */,
 				CDCCBAFF1A05AFA7006CC981 /* main.m */,
@@ -273,17 +262,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD0352AB1A086E8B009D285E /* snuff.png in Resources */,
-				CD0352A81A086E8B009D285E /* cigars.png in Resources */,
-				CD0352AA1A086E8B009D285E /* ecigarettes.png in Resources */,
-				CD0352AC1A086E8B009D285E /* snus.png in Resources */,
+				CD0352B21A08B8EE009D285E /* icoCalDel.png in Resources */,
 				CDCCBB2E1A05B108006CC981 /* icoCameraCirclePressed.png in Resources */,
 				CDCCBB2D1A05B108006CC981 /* icoCameraCircle.png in Resources */,
 				CDCCBB0F1A05AFA7006CC981 /* Images.xcassets in Resources */,
+				CD0352B01A08AA03009D285E /* icoCalBW.png in Resources */,
 				CDCCBAFE1A05AFA7006CC981 /* InfoPlist.strings in Resources */,
 				CDCCBB071A05AFA7006CC981 /* Main.storyboard in Resources */,
 				CDCCBB301A05B240006CC981 /* icoCalQuit.png in Resources */,
-				CD0352A91A086E8B009D285E /* hookah.png in Resources */,
+				CD0352AE1A089862009D285E /* icoCalMail.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,7 +295,6 @@
 				CDCCBB0A1A05AFA7006CC981 /* PTMainViewController.m in Sources */,
 				CDCCBB041A05AFA7006CC981 /* PTAppDelegate.m in Sources */,
 				CDCCBB001A05AFA7006CC981 /* main.m in Sources */,
-				CDCCBB351A05C2E4006CC981 /* PTDocument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
