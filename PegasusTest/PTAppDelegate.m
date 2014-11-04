@@ -22,13 +22,13 @@
 //    [_scannedDocuments removeLastObject];
     
     
-    if (_scannedDocuments) {
-        self.myDocument = [_scannedDocuments lastObject];
-    }
-    
-    if (_myDocument == nil) {
-        self.myDocument = [[PTDocument alloc] init];
-    }
+//    if (_scannedDocuments) {
+//        self.myDocument = [_scannedDocuments lastObject];
+//    }
+//    
+//    if (_myDocument == nil) {
+//        self.myDocument = [[PTDocument alloc] init];
+//    }
 
     return YES;
 }

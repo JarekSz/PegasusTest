@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD0352A81A086E8B009D285E /* cigars.png in Resources */ = {isa = PBXBuildFile; fileRef = CD0352A31A086E8B009D285E /* cigars.png */; };
+		CD0352A91A086E8B009D285E /* hookah.png in Resources */ = {isa = PBXBuildFile; fileRef = CD0352A41A086E8B009D285E /* hookah.png */; };
+		CD0352AA1A086E8B009D285E /* ecigarettes.png in Resources */ = {isa = PBXBuildFile; fileRef = CD0352A51A086E8B009D285E /* ecigarettes.png */; };
+		CD0352AB1A086E8B009D285E /* snuff.png in Resources */ = {isa = PBXBuildFile; fileRef = CD0352A61A086E8B009D285E /* snuff.png */; };
+		CD0352AC1A086E8B009D285E /* snus.png in Resources */ = {isa = PBXBuildFile; fileRef = CD0352A71A086E8B009D285E /* snus.png */; };
 		CD68A4E61A0690E000ADC800 /* PTCroppingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD68A4E51A0690E000ADC800 /* PTCroppingView.m */; };
 		CDCCBAF41A05AFA7006CC981 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCCBAF31A05AFA7006CC981 /* Foundation.framework */; };
 		CDCCBAF61A05AFA7006CC981 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCCBAF51A05AFA7006CC981 /* CoreGraphics.framework */; };
@@ -41,6 +46,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CD0352A31A086E8B009D285E /* cigars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cigars.png; sourceTree = "<group>"; };
+		CD0352A41A086E8B009D285E /* hookah.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hookah.png; sourceTree = "<group>"; };
+		CD0352A51A086E8B009D285E /* ecigarettes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ecigarettes.png; sourceTree = "<group>"; };
+		CD0352A61A086E8B009D285E /* snuff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snuff.png; sourceTree = "<group>"; };
+		CD0352A71A086E8B009D285E /* snus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snus.png; sourceTree = "<group>"; };
 		CD68A4E41A0690E000ADC800 /* PTCroppingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTCroppingView.h; sourceTree = "<group>"; };
 		CD68A4E51A0690E000ADC800 /* PTCroppingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTCroppingView.m; sourceTree = "<group>"; };
 		CDCCBAF01A05AFA7006CC981 /* PegasusTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PegasusTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +162,11 @@
 		CDCCBAFA1A05AFA7006CC981 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CD0352A31A086E8B009D285E /* cigars.png */,
+				CD0352A41A086E8B009D285E /* hookah.png */,
+				CD0352A51A086E8B009D285E /* ecigarettes.png */,
+				CD0352A61A086E8B009D285E /* snuff.png */,
+				CD0352A71A086E8B009D285E /* snus.png */,
 				CDCCBB2B1A05B108006CC981 /* icoCameraCircle.png */,
 				CDCCBB2C1A05B108006CC981 /* icoCameraCirclePressed.png */,
 				CDCCBB2F1A05B240006CC981 /* icoCalQuit.png */,
@@ -258,12 +273,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD0352AB1A086E8B009D285E /* snuff.png in Resources */,
+				CD0352A81A086E8B009D285E /* cigars.png in Resources */,
+				CD0352AA1A086E8B009D285E /* ecigarettes.png in Resources */,
+				CD0352AC1A086E8B009D285E /* snus.png in Resources */,
 				CDCCBB2E1A05B108006CC981 /* icoCameraCirclePressed.png in Resources */,
 				CDCCBB2D1A05B108006CC981 /* icoCameraCircle.png in Resources */,
 				CDCCBB0F1A05AFA7006CC981 /* Images.xcassets in Resources */,
 				CDCCBAFE1A05AFA7006CC981 /* InfoPlist.strings in Resources */,
 				CDCCBB071A05AFA7006CC981 /* Main.storyboard in Resources */,
 				CDCCBB301A05B240006CC981 /* icoCalQuit.png in Resources */,
+				CD0352A91A086E8B009D285E /* hookah.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,11 +26,25 @@
 	// Do any additional setup after loading the view, typically from a nib.
     _appDelegate = [[UIApplication sharedApplication] delegate];
     
-    if (_appDelegate.myDocument) {
-        _docView.image = [UIImage imageWithData:_appDelegate.myDocument.imageData];
+    if ([_appDelegate.scannedDocuments count] > 0)
+    {
+        // last document
+        _index = [_appDelegate.scannedDocuments count] - 1;
         
-        //Crop the image to a square
-        _appDelegate.myDocument.docSize = _docView.frame.size;
+//        self.currDocument = [_appDelegate.scannedDocuments objectAtIndex:_index];
+
+//        UIImage *image = _currDocument.image;
+//        UIImage *image = [UIImage imageNamed:@"cigars.png"];
+        self.currImage = [_appDelegate.scannedDocuments objectAtIndex:_index];
+        
+        self.docView = [[UIImageView alloc] initWithImage:_currImage];
+        
+        CGRect frame = CGRectMake(0, 44, 320, 524);
+        [_docView setFrame:frame];
+        
+        _docView.image = _currImage;
+        
+        [self.view addSubview:_docView];
         
         //
         // swipping left
@@ -39,7 +53,7 @@
         swippingLeftGesture.numberOfTouchesRequired = 1;
         swippingLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
         
-        [_docView addGestureRecognizer:swippingLeftGesture];
+        [self.view addGestureRecognizer:swippingLeftGesture];
         
         swippingLeftGesture.delegate = self;
         
@@ -50,7 +64,7 @@
         swippingRightGesture.numberOfTouchesRequired = 1;
         swippingRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
         
-        [_docView addGestureRecognizer:swippingRightGesture];
+        [self.view addGestureRecognizer:swippingRightGesture];
         
         swippingRightGesture.delegate = self;
     }
@@ -66,14 +80,26 @@
 
 - (void)handleRightSwipe:(UITapGestureRecognizer *)recognizer
 {
-    NSInteger count = [_appDelegate.scannedDocuments count];
-    if (_index < count) {
-        _index++;
+    if (_index > 0) {
+        _index--;
     }
     
-    _currDocument = [_appDelegate.scannedDocuments objectAtIndex:_index];
+//    self.currDocument = nil;
+//    self.docView = nil;
     
-    _docView.image = [UIImage imageWithData:_currDocument.imageData];
+    self.currImage = [_appDelegate.scannedDocuments objectAtIndex:_index];
+    
+//    UIImage *image = _currDocument.image;
+//    UIImage *image = [UIImage imageNamed:@"hookah.png"];
+    
+    self.docView = [[UIImageView alloc] initWithImage:_currImage];
+    
+    CGRect frame = CGRectMake(0, 44, 320, 524);
+    [_docView setFrame:frame];
+    
+    [_docView setImage:_currImage];
+    
+    [self.view addSubview:_docView];
     
 
 //    if (_mode > 0) {
@@ -95,13 +121,29 @@
 
 - (void)handleLeftSwipe:(UITapGestureRecognizer *)recognizer
 {
-    if (_index > 0) {
-        _index--;
+    NSInteger last = [_appDelegate.scannedDocuments count] - 1;
+    if (_index < last) {
+        _index++;
     }
     
-    _currDocument = [_appDelegate.scannedDocuments objectAtIndex:_index];
+//    self.currDocument = nil;
+    self.docView = nil;
     
-    _docView.image = [UIImage imageWithData:_currDocument.imageData];
+    self.currImage = [_appDelegate.scannedDocuments objectAtIndex:_index];
+    
+//    UIImage *image = _currDocument.image;
+//    UIImage *image = [UIImage imageNamed:@"ecigarettes.png"];
+    
+    self.docView = [[UIImageView alloc] initWithImage:_currImage];
+    
+    CGRect frame = CGRectMake(0, 44, 320, 524);
+    [_docView setFrame:frame];
+    
+    [_docView setImage:_currImage];
+    
+    [self.view addSubview:_docView];
+    
+
     
 //    if (_index == LAST)
 //    {
@@ -162,14 +204,15 @@
     
     _appDelegate = [[UIApplication sharedApplication] delegate];
     
-    UIImage *image = [UIImage imageWithData:_appDelegate.myDocument.imageData];
+//    UIImage *image = _currDocument.image;
     
-    CGSize size = [image size];
+    CGSize size = [_currImage size];
     
     
-    UIImage *newImage = [self squareImageWithImage:image scaledToSize:size];
+    UIImage *newImage = [self squareImageWithImage:_currImage scaledToSize:size];
     
-    _appDelegate.myDocument.imageData = UIImageJPEGRepresentation(newImage, 0.05f);
+//    _currDocument.imageData = UIImageJPEGRepresentation(newImage, 0.05f);
+    [_docView setImage:newImage];
     
     [PTUtilities archiveScannedDocs:_appDelegate.scannedDocuments];
     
@@ -289,29 +332,29 @@
     return newImage;
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [super touchesBegan:touches withEvent:event];
-    
-    UITouch *touch = [[event allTouches] anyObject];
-    CGPoint touchLocation = [touch locationInView:_docView];
-    
-    if (CGPointEqualToPoint(_pt1, CGPointZero)) {
-        _pt1 = touchLocation;
-    }
-    else {
-        _pt2 = touchLocation;
-    }
-}
-
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    [super touchesMoved:touches withEvent:event];
-    
-}
-
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    [super touchesEnded:touches withEvent:event];
-    
-}
+//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+//    [super touchesBegan:touches withEvent:event];
+//    
+//    UITouch *touch = [[event allTouches] anyObject];
+//    CGPoint touchLocation = [touch locationInView:_docView];
+//    
+//    if (CGPointEqualToPoint(_pt1, CGPointZero)) {
+//        _pt1 = touchLocation;
+//    }
+//    else {
+//        _pt2 = touchLocation;
+//    }
+//}
+//
+//-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+//    [super touchesMoved:touches withEvent:event];
+//    
+//}
+//
+//-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+//    [super touchesEnded:touches withEvent:event];
+//    
+//}
 
 #pragma mark -
 #pragma mark - Scale Image

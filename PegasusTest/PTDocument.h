@@ -11,10 +11,10 @@
 @interface PTDocument : NSObject <NSCoding, NSCopying>
 
 @property (nonatomic, strong) NSDate *date;
-@property (nonatomic, strong) NSData *imageData;
+@property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *note;
-@property CGSize docSize;
+//@property CGSize docSize;
 
 
 @end

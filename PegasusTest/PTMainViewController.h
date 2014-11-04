@@ -15,5 +15,6 @@
 @property (nonatomic, weak) PTAppDelegate *appDelegate;
 @property (nonatomic, strong) PTFlipsideViewController *flipsideView;
 //@property (nonatomic, strong) NSMutableArray *scannedDocuments;
+@property (nonatomic, strong) UIImage *currImage;
 
 @end

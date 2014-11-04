@@ -23,11 +23,13 @@
 @property (nonatomic, weak) PTAppDelegate *appDelegate;
 @property (weak, nonatomic) id <PTFlipsideViewControllerDelegate> delegate;
 //@property (strong, nonatomic) PTDocument *myDocument;
-@property (strong, nonatomic) IBOutlet UIImageView *docView;
-@property (strong, nonatomic) IBOutlet PTCroppingView *cropView;
+@property (strong, nonatomic) UIImageView *docView;
+//dynamic
+@property (strong, nonatomic) PTCroppingView *cropView;
 
 @property int index;
-@property (nonatomic, strong) PTDocument *currDocument;
+//@property (nonatomic, strong) PTDocument *currDocument;
+@property (nonatomic, strong) UIImage *currImage;
 
 - (IBAction)done:(id)sender;
 

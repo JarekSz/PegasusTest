@@ -12,7 +12,7 @@
 #define kImage  @"image"
 #define kTitle  @"title"
 #define kNote   @"note"
-#define kSize   @"size"
+//#define kSize   @"size"
 
 @interface PTDocument ()
 
@@ -24,10 +24,10 @@
 - (void)encodeWithCoder: (NSCoder *)encoder
 {
     [encoder encodeObject:_date     forKey:kName];
-    [encoder encodeObject:_imageData    forKey:kImage];
+    [encoder encodeObject:_image    forKey:kImage];
     [encoder encodeObject:_title    forKey:kTitle];
     [encoder encodeObject:_note     forKey:kNote];
-    [encoder encodeCGSize:_docSize  forKey:kSize];
+//    [encoder encodeCGSize:_docSize  forKey:kSize];
 }
 
 - (id)initWithCoder: (NSCoder *)decoder
@@ -35,10 +35,10 @@
     if ( (self = [super init]) )
     {
         _date =     [decoder decodeObjectForKey:kName];
-        _imageData = [decoder decodeObjectForKey:kImage];
+        _image =    [decoder decodeObjectForKey:kImage];
         _title =    [decoder decodeObjectForKey:kTitle];
         _note =     [decoder decodeObjectForKey:kNote];
-        _docSize =  [decoder decodeCGSizeForKey:kSize];
+//        _docSize =  [decoder decodeCGSizeForKey:kSize];
     }
     
     return self;
@@ -49,10 +49,10 @@
     PTDocument *doc = [[PTDocument alloc] init];
     
     doc.date =      _date;
-    doc.imageData = _imageData;
+    doc.image =     _image;
     doc.title =     _title;
     doc.note =      _note;
-    doc.docSize =   _docSize;
+//    doc.docSize =   _docSize;
     
     return doc;
 }
@@ -62,10 +62,10 @@
     if ( (self = [super init]) )
     {
         self.date =     [NSDate date];
-        self.imageData = nil;
+        self.image =    nil;
         self.title =    @"";
         self.note =     @"";
-        self.docSize =  CGSizeZero;
+//        self.docSize =  CGSizeZero;
     }
     
     return self;

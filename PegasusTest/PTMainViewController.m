@@ -58,9 +58,9 @@
         self.flipsideView = [segue destinationViewController];
         _flipsideView.delegate = self;
         
-        if (_appDelegate.myDocument == nil) {
-            _appDelegate.myDocument = [_appDelegate.scannedDocuments lastObject];
-        }
+//        if (_appDelegate.myDocument == nil) {
+//            _appDelegate.myDocument = [_appDelegate.scannedDocuments lastObject];
+//        }
         
 //        _flipsideView.myDocument = _appDelegate.myDocument;
     }
@@ -121,7 +121,7 @@
 
 - (IBAction)nameChanged:(id)sender
 {
-    _appDelegate.myDocument.title = _docTitle.text;
+//    _appDelegate.myDocument.title = _docTitle.text;
 }
 
 #pragma mark -
@@ -155,12 +155,12 @@
     
     
     // Upload image
-    NSData *imageData = UIImageJPEGRepresentation(image, 0.05f);
+//    NSData *imageData = UIImageJPEGRepresentation(image, 0.5f);
     
-    _appDelegate.myDocument.imageData = imageData;
-    _appDelegate.myDocument.docSize = CGSizeMake(image.size.width, image.size.height);
+    self.currImage = image;
+//    _appDelegate.myDocument.docSize = CGSizeMake(image.size.width, image.size.height);
     
-    [_appDelegate.scannedDocuments addObject:_appDelegate.myDocument];
+    [_appDelegate.scannedDocuments addObject:image];
 }
 
 @end
