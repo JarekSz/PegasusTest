@@ -41,7 +41,7 @@
     float dashPhase = 0.0;
     CGFloat dashLengths[] = { 10 };
     
-    CGContextSetLineWidth(context, 2.0);
+    CGContextSetLineWidth(context, 3.0);
     CGContextSetLineDash(context,
                          dashPhase,
                          dashLengths,

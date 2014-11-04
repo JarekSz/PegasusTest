@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rQl-PL-IFJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rQl-PL-IFJ">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -16,9 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oxl-bJ-vOp">
-                                <rect key="frame" x="35" y="30" width="250" height="40"/>
+                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oxl-bJ-vOp">
+                                <rect key="frame" x="35" y="30" width="250" height="34"/>
                                 <color key="backgroundColor" red="0.40650201609999997" green="0.77075982860000003" blue="0.13170992940000001" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="MOq-E5-qzb"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Pegasus Scanner">
@@ -67,7 +72,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K5c-fl-ED8">
                                 <rect key="frame" x="28" y="512" width="265" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -78,28 +82,12 @@
                                     <action selector="useExistingTapped:" destination="rQl-PL-IFJ" eventType="touchUpInside" id="gMG-vp-0sn"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3jb-GS-u0R">
-                                <rect key="frame" x="35" y="84" width="250" height="326"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3jb-GS-u0R">
+                                <rect key="frame" x="35" y="78" width="250" height="327"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="aXB-AY-96z"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" alpha="0.49999999999999961" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Yu-Gi-LAN">
-                                <rect key="frame" x="107" y="194" width="106" height="106"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="106" id="6LJ-2J-Zak"/>
-                                    <constraint firstAttribute="height" constant="106" id="8Af-KL-sDY"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" backgroundImage="icoCameraCircle.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="selected" backgroundImage="icoCameraCirclePressed.png"/>
-                                <connections>
-                                    <action selector="cameraButtonTapped:" destination="rQl-PL-IFJ" eventType="touchUpInside" id="NNz-Or-ScN"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odv-wV-GmB">
                                 <rect key="frame" x="92" y="423" width="64" height="64"/>
                                 <constraints>
@@ -136,26 +124,39 @@
                                     <action selector="delete:" destination="rQl-PL-IFJ" eventType="touchUpInside" id="EZf-67-N2G"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" alpha="0.49999999999999961" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Yu-Gi-LAN">
+                                <rect key="frame" x="107" y="136" width="106" height="106"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="106" id="SPQ-wh-KAw"/>
+                                    <constraint firstAttribute="height" constant="106" id="oco-3x-Oxn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" backgroundImage="icoCameraCircle.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" backgroundImage="icoCameraCirclePressed.png"/>
+                                <connections>
+                                    <action selector="cameraButtonTapped:" destination="rQl-PL-IFJ" eventType="touchUpInside" id="NNz-Or-ScN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.09803922474" green="0.6549019814" blue="0.78039222959999999" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="3jb-GS-u0R" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" constant="35" id="3hc-OG-frF"/>
                             <constraint firstAttribute="trailing" secondItem="3jb-GS-u0R" secondAttribute="trailing" constant="35" id="5uX-IC-J59"/>
                             <constraint firstItem="K5c-fl-ED8" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" constant="28" id="GUo-Qk-UIL"/>
-                            <constraint firstItem="lgQ-lU-3Cs" firstAttribute="top" secondItem="3jb-GS-u0R" secondAttribute="bottom" constant="19" id="HIt-FP-L26"/>
-                            <constraint firstAttribute="trailing" secondItem="1Yu-Gi-LAN" secondAttribute="trailing" constant="107" id="Jfp-vV-nde"/>
                             <constraint firstItem="h6Q-eZ-BVM" firstAttribute="top" secondItem="K5c-fl-ED8" secondAttribute="bottom" constant="20" id="Jud-nn-3Fe"/>
                             <constraint firstAttribute="trailing" secondItem="Oxl-bJ-vOp" secondAttribute="trailing" constant="35" id="L2R-E0-tYe"/>
                             <constraint firstItem="K5c-fl-ED8" firstAttribute="top" secondItem="jqg-sy-dxO" secondAttribute="bottom" constant="25" id="OIW-GH-Y8F"/>
+                            <constraint firstItem="1Yu-Gi-LAN" firstAttribute="top" secondItem="Oxl-bJ-vOp" secondAttribute="bottom" constant="72" id="OXT-B7-Tft"/>
                             <constraint firstItem="Oxl-bJ-vOp" firstAttribute="top" secondItem="j6P-GG-nDu" secondAttribute="bottom" constant="10" id="PE7-SM-f8Q"/>
+                            <constraint firstItem="1Yu-Gi-LAN" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leadingMargin" constant="91" id="TZM-8S-qFT"/>
                             <constraint firstItem="K5c-fl-ED8" firstAttribute="top" secondItem="lgQ-lU-3Cs" secondAttribute="bottom" constant="25" id="Ubp-dH-W1P"/>
                             <constraint firstItem="jqg-sy-dxO" firstAttribute="top" secondItem="3jb-GS-u0R" secondAttribute="bottom" constant="19" id="ZmW-ma-PIK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1Yu-Gi-LAN" secondAttribute="trailing" constant="91" id="byH-rp-APC"/>
                             <constraint firstItem="K5c-fl-ED8" firstAttribute="top" secondItem="odv-wV-GmB" secondAttribute="bottom" constant="25" id="ciA-tJ-6PQ"/>
                             <constraint firstItem="Oxl-bJ-vOp" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" constant="35" id="dAV-nU-ZDY"/>
-                            <constraint firstItem="N4S-2Y-mWV" firstAttribute="top" secondItem="3jb-GS-u0R" secondAttribute="bottom" constant="19" id="fcE-Gx-PKg"/>
-                            <constraint firstItem="odv-wV-GmB" firstAttribute="top" secondItem="3jb-GS-u0R" secondAttribute="bottom" constant="19" id="gkD-96-SjL"/>
                             <constraint firstItem="K5c-fl-ED8" firstAttribute="top" secondItem="N4S-2Y-mWV" secondAttribute="bottom" constant="25" id="iSZ-Sf-LRm"/>
-                            <constraint firstItem="1Yu-Gi-LAN" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" constant="107" id="kpX-Ge-IQH"/>
                             <constraint firstAttribute="trailing" secondItem="K5c-fl-ED8" secondAttribute="trailing" constant="27" id="o6R-Ax-bp7"/>
                             <constraint firstItem="3jb-GS-u0R" firstAttribute="top" secondItem="Oxl-bJ-vOp" secondAttribute="bottom" constant="14" id="sBU-e5-Qrq"/>
                         </constraints>
@@ -201,7 +202,6 @@
                             </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CGW-7I-V1s">
                                 <rect key="frame" x="0.0" y="44" width="320" height="524"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -213,7 +213,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xlJ-1o-FvB" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="318" y="108"/>
+            <point key="canvasLocation" x="317" y="118"/>
         </scene>
     </scenes>
     <resources>

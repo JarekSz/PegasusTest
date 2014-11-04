@@ -108,18 +108,11 @@
 {
     self.cropping = NO;
     
-    self.cropView = nil;
-    
     _appDelegate = [[UIApplication sharedApplication] delegate];
     
     if (_cropView)
     {
-        CGFloat width = _cropView.right - _cropView.left;
-        CGFloat height = _cropView.bottom - _cropView.top;
-        
-        CGSize size = CGSizeMake(width, height); //[_currImage size];
-        
-        UIImage *newImage = [self squareImageWithImage:_currImage scaledToSize:size];
+        UIImage *newImage = [self cropImage:_currImage];
         
         [_imageView setImage:newImage];
         
@@ -129,6 +122,8 @@
         
         [PTUtilities archiveScannedDocs:_appDelegate.scannedDocuments];
     }
+    
+    self.cropView = nil;
 
     [self.delegate flipsideViewControllerDidFinish:self];
 }
@@ -137,16 +132,19 @@
 {
     self.cropping = YES;
     
-    CGRect rect = _imageView.frame;
-    
-    self.cropView = [[PTCroppingView alloc] initWithFrame:rect];
-    
-    [_cropView setBackgroundColor:[UIColor clearColor]];
-    
-    [self.view addSubview:_cropView];
+    if (_cropView == nil)
+    {
+        CGRect rect = _imageView.frame;
+        
+        self.cropView = [[PTCroppingView alloc] initWithFrame:rect];
+        
+        [_cropView setBackgroundColor:[UIColor clearColor]];
+        
+        [self.view addSubview:_cropView];
+    }
 }
 
-- (UIImage *)squareImageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+- (UIImage *)cropImage:(UIImage *)image {
     double ratio;
     double delta;
     CGPoint offset;
@@ -160,11 +158,11 @@
     //figure out if the picture is landscape or portrait, then
     //calculate scale factor and offset
     if (image.size.width > image.size.height) {
-        ratio = width / image.size.width;
+        ratio = height / image.size.width;
         delta = (ratio*image.size.width - ratio*image.size.height);
         offset = CGPointMake(delta/2, 0);
     } else {
-        ratio = height / image.size.height;
+        ratio = width / image.size.height;
         delta = (ratio*image.size.height - ratio*image.size.width);
         offset = CGPointMake(0, delta/2);
     }
