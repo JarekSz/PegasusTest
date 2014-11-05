@@ -20,6 +20,7 @@
 
 @implementation PTFlipsideViewController
 
+
 - (BOOL) prefersStatusBarHidden {
     return YES;
 }
@@ -27,7 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nib.
     _appDelegate = [[UIApplication sharedApplication] delegate];
     
     if ([_appDelegate.scannedDocuments count] > 0)
@@ -58,15 +59,6 @@
         
         swippingRightGesture.delegate = self;
     }
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        [PTUtilities archiveScannedDocs:_appDelegate.scannedDocuments];
-//    });
 }
 
 - (void)didReceiveMemoryWarning

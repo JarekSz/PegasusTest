@@ -12,7 +12,6 @@
 
 
 @class PTFlipsideViewController;
-@class PTAppDelegate;
 
 @protocol PTFlipsideViewControllerDelegate
 - (void)flipsideViewControllerDidFinish:(PTFlipsideViewController *)controller;
@@ -25,9 +24,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 //dynamic
 @property (strong, nonatomic) IBOutlet PTCroppingView *croppingView;
-@property NSUInteger *index;
+@property NSInteger *index;
 @property (nonatomic, strong) UIImage *currImage;
-//@property BOOL cropping;
 
 - (IBAction)done:(id)sender;
 

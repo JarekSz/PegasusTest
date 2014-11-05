@@ -6,22 +6,20 @@
 //  Copyright (c) 2014 Jaroslaw Szymczyk. All rights reserved.
 //
 
-#import "PTFlipsideViewController.h"
-#import "PTAppDelegate.h"
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
+#import "PTFlipsideViewController.h"
+#import "PTAppDelegate.h"
 
-@class PTAppDelegate;
-@class PTFlipsideViewController;
 
-
-@interface PTMainViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, MFMailComposeViewControllerDelegate>
+@interface PTMainViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate,PTFlipsideViewControllerDelegate, MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, weak) PTAppDelegate *appDelegate;
 @property (nonatomic, strong) PTFlipsideViewController *flipsideView;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) UIImage *currImage;
-@property NSUInteger currIndex;
+@property NSInteger currIndex;
+
 
 - (void)updateImage:(UIImage *)image atIndex:(NSInteger)index;
 

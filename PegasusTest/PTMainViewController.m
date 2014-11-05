@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
     
-	// Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nib.
     _appDelegate = [[UIApplication sharedApplication] delegate];
     
     _currIndex = -1;
@@ -51,6 +51,12 @@
     }
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 - (void)updateImage:(UIImage *)image atIndex:(NSInteger)index
 {
     self.currIndex = index;
@@ -59,18 +65,6 @@
     if (_currImage) {
         _imageView.image = _currImage;
     }
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Flipside View
@@ -82,8 +76,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"showAlternate"])
-    {
+    if ([[segue identifier] isEqualToString:@"showAlternate"]) {
         self.flipsideView = [segue destinationViewController];
         
         _flipsideView.delegate = self;
@@ -142,6 +135,11 @@
         // Show image picker
         [self presentViewController:imagePicker animated:YES completion:nil];
     }
+}
+
+- (IBAction)nameChanged:(id)sender
+{
+    //    _appDelegate.myDocument.title = _docTitle.text;
 }
 
 #pragma mark -

@@ -16,42 +16,34 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    
-//    UIStoryboard *storybord = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    _main = (PTMainViewController *)[storybord instantiateInitialViewController];
     self.initialViewController = (PTMainViewController *)self.window.rootViewController;
-
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         _scannedDocuments = [PTUtilities unarchiveScannedDocs];
         
-        if (_scannedDocuments == nil) {
-            self.scannedDocuments = [[NSMutableArray alloc] init];
+        if (_scannedDocuments) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                if ([_scannedDocuments count] > 0) {
+                    UIImage *image = [_scannedDocuments lastObject];
+                    NSInteger index = [_scannedDocuments count] - 1;
+                    [_initialViewController updateImage:image atIndex:index];
+                }
+            });
         }
-        
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            if ([_scannedDocuments count] > 0) {
-                UIImage *image = [_scannedDocuments lastObject];
-                NSInteger index = [_scannedDocuments count] - 1;
-                [_initialViewController updateImage:image atIndex:index];
-            }
-        });
     });
     
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [PTUtilities archiveScannedDocs:_scannedDocuments];
-    });
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
