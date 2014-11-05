@@ -72,6 +72,7 @@
     }
 }
 
+#pragma mark -
 #pragma mark - Flipside View
 
 - (void)flipsideViewControllerDidFinish:(PTFlipsideViewController *)controller
@@ -88,6 +89,9 @@
         _flipsideView.index = &_currIndex;
     }
 }
+
+#pragma mark -
+#pragma mark BASIC FUNCTIONALITY
 
 - (IBAction)cameraButtonTapped:(id)sender
 {
@@ -142,44 +146,6 @@
     }
 }
 
-#pragma mark -
-#pragma mark UIImagePickerControllerDelegate methods
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    // Access the uncropped image from info dictionary
-    UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-    
-    // Dismiss controller
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    
-    self.currImage = image;
-
-    if (_currImage) {
-        _imageView.image = _currImage;
-    }
-
-    [_appDelegate.scannedDocuments addObject:image];
-    
-    _currIndex = [_appDelegate.scannedDocuments count] - 1;
-}
-
-#pragma mark -
-#pragma mark BASIC FUNCTIONALITY
-
-- (IBAction)convertToGray:(id)sender
-{
-    UIImage *bwImage = [self convertToGreyscale:_currImage];
-    
-    _imageView.image = bwImage;
-    
-    [_appDelegate.scannedDocuments addObject:bwImage];
-    
-    _currIndex = [_appDelegate.scannedDocuments count] - 1;
-    
-    [_appDelegate.scannedDocuments replaceObjectAtIndex:_currIndex withObject:bwImage];
-}
-
 - (IBAction)delete:(id)sender
 {
     [_appDelegate.scannedDocuments removeObjectAtIndex:_currIndex];
@@ -210,6 +176,41 @@
     [self presentViewController:picker animated:YES completion:nil];
     
     picker = nil;
+}
+
+- (IBAction)convertToGray:(id)sender
+{
+    UIImage *bwImage = [self convertToGreyscale:_currImage];
+    
+    _imageView.image = bwImage;
+    
+    [_appDelegate.scannedDocuments addObject:bwImage];
+    
+    _currIndex = [_appDelegate.scannedDocuments count] - 1;
+    
+    [_appDelegate.scannedDocuments replaceObjectAtIndex:_currIndex withObject:bwImage];
+}
+
+#pragma mark -
+#pragma mark UIImagePickerControllerDelegate methods
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    // Access the uncropped image from info dictionary
+    UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    
+    // Dismiss controller
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    self.currImage = image;
+
+    if (_currImage) {
+        _imageView.image = _currImage;
+    }
+
+    [_appDelegate.scannedDocuments addObject:image];
+    
+    _currIndex = [_appDelegate.scannedDocuments count] - 1;
 }
 
 -(void)mailComposeController:(MFMailComposeViewController *)mailer

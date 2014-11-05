@@ -94,7 +94,8 @@
     
 }
 
-#pragma mark - Actions
+#pragma mark -
+#pragma mark - Basic functionality
 
 - (IBAction)done:(id)sender
 {
@@ -105,34 +106,34 @@
 
 - (IBAction)crop:(id)sender
 {
+    UIImage *fixedImage = [self scaleAndRotateImage:_currImage];
+    
     // image size
-    CGFloat imgWidth = _currImage.size.width;
-    CGFloat imgHeight = _currImage.size.height;
+    CGFloat imgWidth = fixedImage.size.width;
+    CGFloat imgHeight = fixedImage.size.height;
     
     // view size
     CGFloat viewWidth = _imageView.frame.size.width;
     CGFloat viewHeight = _imageView.frame.size.height;
     
-    CGFloat ratioX = imgWidth / viewWidth;
-    CGFloat ratioY = imgHeight / viewHeight;
-    
-    CGFloat ratio = MAX(ratioX, ratioY);
+    CGFloat ratio = MAX(imgWidth / viewWidth, imgHeight / viewHeight);
 
-    CGFloat left = _croppingView.left * ratio;
-    CGFloat top = _croppingView.top * ratio;
+    CGFloat marginX = (viewWidth - imgWidth / ratio) / 2;
+    CGFloat marginY = (viewHeight - imgHeight / ratio) / 2;
+    
+    // cropping origin
+    CGFloat left = (_croppingView.left - marginX) * ratio;
+    CGFloat top = (_croppingView.top - marginY) * ratio;
     
     // cropping size
-    CGFloat croWidth = _croppingView.right - _croppingView.left;
-    CGFloat croHeight = _croppingView.bottom - _croppingView.top;
-    
-    CGFloat width = croWidth * ratio;
-    CGFloat height = croHeight * ratio;
+    CGFloat width = (_croppingView.right - _croppingView.left) * ratio;
+    CGFloat height = (_croppingView.bottom - _croppingView.top) * ratio;
     
     if (self.currImage != nil)
     {
-        CGRect CropRect = CGRectMake(left, top, width, height);
+        CGRect CropRect = CGRectMake(left, top, width, height); //(260, 60, 2700, 2400);
         
-        CGImageRef imageRef = CGImageCreateWithImageInRect([self.currImage CGImage], CropRect);
+        CGImageRef imageRef = CGImageCreateWithImageInRect([fixedImage CGImage], CropRect);
         
         self.currImage = [UIImage imageWithCGImage:imageRef];
         
@@ -147,6 +148,106 @@
         //
         //////////////////////////////////////////////
     }
+}
+
+/////////////////////////////////////////////////////////
+//
+// CODE from STACKOVERFLOW
+//
+//----rotate image if picked from gallery or camera----//
+//
+- (UIImage *)scaleAndRotateImage:(UIImage *)image {
+    
+    NSLog(@"scaleAndRotateImage");
+    static int kMaxResolution = 640; // this is the maximum resolution that you want to set for an image.
+    
+    CGImageRef imgRef = image.CGImage;
+    CGFloat width = CGImageGetWidth(imgRef);
+    CGFloat height = CGImageGetHeight(imgRef);
+    
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    CGRect bounds = CGRectMake(0, 0, width, height);
+    if (width > kMaxResolution || height > kMaxResolution) {
+        CGFloat ratio = width/height;
+        if (ratio > 1) {
+            bounds.size.width = kMaxResolution;
+            bounds.size.height = bounds.size.width / ratio;
+        } else {
+            bounds.size.height = kMaxResolution;
+            bounds.size.width = bounds.size.height * ratio;
+        }
+    }
+    
+    CGFloat scaleRatio = bounds.size.width / width;
+    CGSize imageSize = CGSizeMake(CGImageGetWidth(imgRef), CGImageGetHeight(imgRef));
+    CGFloat boundHeight;
+    UIImageOrientation orient = image.imageOrientation;
+    switch(orient) {
+        case UIImageOrientationUp:
+            transform = CGAffineTransformIdentity;
+            break;
+        case UIImageOrientationUpMirrored:
+            transform = CGAffineTransformMakeTranslation(imageSize.width, 0.0);
+            transform = CGAffineTransformScale(transform, -1.0, 1.0);
+            break;
+        case UIImageOrientationDown:
+            transform = CGAffineTransformMakeTranslation(imageSize.width, imageSize.height);
+            transform = CGAffineTransformRotate(transform, M_PI);
+            break;
+        case UIImageOrientationDownMirrored:
+            transform = CGAffineTransformMakeTranslation(0.0, imageSize.height);
+            transform = CGAffineTransformScale(transform, 1.0, -1.0);
+            break;
+        case UIImageOrientationLeftMirrored:
+            boundHeight = bounds.size.height;
+            bounds.size.height = bounds.size.width;
+            bounds.size.width = boundHeight;
+            transform = CGAffineTransformMakeTranslation(imageSize.height, imageSize.width);
+            transform = CGAffineTransformScale(transform, -1.0, 1.0);
+            transform = CGAffineTransformRotate(transform, 3.0 * M_PI / 2.0);
+            break;
+        case UIImageOrientationLeft:
+            boundHeight = bounds.size.height;
+            bounds.size.height = bounds.size.width;
+            bounds.size.width = boundHeight;
+            transform = CGAffineTransformMakeTranslation(0.0, imageSize.width);
+            transform = CGAffineTransformRotate(transform, 3.0 * M_PI / 2.0);
+            break;
+        case UIImageOrientationRightMirrored:
+            boundHeight = bounds.size.height;
+            bounds.size.height = bounds.size.width;
+            bounds.size.width = boundHeight;
+            transform = CGAffineTransformMakeScale(-1.0, 1.0);
+            transform = CGAffineTransformRotate(transform, M_PI / 2.0);
+            break;
+        case UIImageOrientationRight:
+            boundHeight = bounds.size.height;
+            bounds.size.height = bounds.size.width;
+            bounds.size.width = boundHeight;
+            transform = CGAffineTransformMakeTranslation(imageSize.height, 0.0);
+            transform = CGAffineTransformRotate(transform, M_PI / 2.0);
+            break;
+        default:
+            [NSException raise:NSInternalInconsistencyException
+                        format:@"Invalid image orientation"];
+    }
+    
+    UIGraphicsBeginImageContext(bounds.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    if (orient == UIImageOrientationRight || orient == UIImageOrientationLeft) {
+        CGContextScaleCTM(context, -scaleRatio, scaleRatio);
+        CGContextTranslateCTM(context, -height, 0);
+    } else {
+        CGContextScaleCTM(context, scaleRatio, -scaleRatio);
+        CGContextTranslateCTM(context, 0, -height);
+    }
+    CGContextConcatCTM(context, transform);
+    CGContextDrawImage(UIGraphicsGetCurrentContext(),
+                       CGRectMake(0, 0, width, height), imgRef);
+    UIImage *returnImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return returnImage;
 }
 
 @end

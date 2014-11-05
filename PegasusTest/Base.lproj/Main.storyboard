@@ -14,11 +14,11 @@
                         <viewControllerLayoutGuide type="bottom" id="RJJ-Fr-AMA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="l9E-07-oys">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqg-sy-dxO">
-                                <rect key="frame" x="236" y="346" width="64" height="64"/>
+                                <rect key="frame" x="236" y="434" width="64" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="LUD-oP-hl2"/>
                                     <constraint firstAttribute="height" constant="64" id="tEk-i8-C2S"/>
@@ -36,7 +36,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lgQ-lU-3Cs">
-                                <rect key="frame" x="20" y="346" width="64" height="64"/>
+                                <rect key="frame" x="20" y="434" width="64" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="7K8-xV-C4y"/>
                                     <constraint firstAttribute="width" constant="64" id="i6a-BY-8ei"/>
@@ -54,7 +54,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odv-wV-GmB">
-                                <rect key="frame" x="92" y="346" width="64" height="64"/>
+                                <rect key="frame" x="92" y="434" width="64" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="0CY-ma-vTK"/>
                                     <constraint firstAttribute="height" constant="64" id="vNb-y4-gpJ"/>
@@ -72,7 +72,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N4S-2Y-mWV">
-                                <rect key="frame" x="164" y="346" width="64" height="64"/>
+                                <rect key="frame" x="164" y="434" width="64" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="4Fg-Cc-lU8"/>
                                     <constraint firstAttribute="height" constant="64" id="hdg-FR-v7f"/>
@@ -89,23 +89,8 @@
                                     <action selector="delete:" destination="rQl-PL-IFJ" eventType="touchUpInside" id="EZf-67-N2G"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.79999999999999982" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Yu-Gi-LAN">
-                                <rect key="frame" x="107" y="136" width="106" height="106"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="106" id="OLE-nf-1uW"/>
-                                    <constraint firstAttribute="height" constant="106" id="T29-l5-eed"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" backgroundImage="icoCameraCircle.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="selected" backgroundImage="icoCameraCirclePressed.png"/>
-                                <connections>
-                                    <action selector="cameraButtonTapped:" destination="rQl-PL-IFJ" eventType="touchUpInside" id="NNz-Or-ScN"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K5c-fl-ED8">
-                                <rect key="frame" x="28" y="425" width="265" height="35"/>
+                                <rect key="frame" x="28" y="513" width="265" height="35"/>
                                 <color key="backgroundColor" red="0.0" green="0.67298699819999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="wU6-wD-6Og"/>
@@ -121,8 +106,23 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3jb-GS-u0R">
-                                <rect key="frame" x="30" y="10" width="260" height="334"/>
+                                <rect key="frame" x="30" y="10" width="260" height="422"/>
                             </imageView>
+                            <button opaque="NO" alpha="0.39999999999999963" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Yu-Gi-LAN">
+                                <rect key="frame" x="107" y="136" width="106" height="106"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="106" id="OLE-nf-1uW"/>
+                                    <constraint firstAttribute="height" constant="106" id="T29-l5-eed"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" backgroundImage="icoCameraCircle.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" backgroundImage="icoCameraCirclePressed.png"/>
+                                <connections>
+                                    <action selector="cameraButtonTapped:" destination="rQl-PL-IFJ" eventType="touchUpInside" id="NNz-Or-ScN"/>
+                                </connections>
+                            </button>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oxl-bJ-vOp">
                                 <rect key="frame" x="35" y="10" width="250" height="33"/>
                                 <color key="backgroundColor" red="0.40650201609999997" green="0.77075982860000003" blue="0.13170992940000001" alpha="0.40000000000000002" colorSpace="deviceRGB"/>
@@ -162,7 +162,7 @@
                         </constraints>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="existingButton" destination="K5c-fl-ED8" id="c9B-8t-FJ2"/>
                         <outlet property="imageView" destination="3jb-GS-u0R" id="hCu-97-jhu"/>
@@ -181,11 +181,11 @@
                         <viewControllerLayoutGuide type="bottom" id="hX6-Af-qPu"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tg4-aq-CMy">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CGW-7I-V1s">
-                                <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                             </imageView>
                             <navigationBar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="hED-2o-FLw">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -206,13 +206,14 @@
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BJ6-X2-wAm" customClass="PTCroppingView">
-                                <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="croppingView" destination="BJ6-X2-wAm" id="i1s-1x-IXL"/>
                         <outlet property="imageView" destination="CGW-7I-V1s" id="7zF-XY-euu"/>
