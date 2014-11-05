@@ -27,4 +27,6 @@ typedef enum : NSUInteger {
 @property CGFloat left;
 @property CGFloat right;
 
+@property (nonatomic, strong) UIImage *image;
+
 @end

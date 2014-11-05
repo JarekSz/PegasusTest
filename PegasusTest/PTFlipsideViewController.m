@@ -20,7 +20,6 @@
 
 @implementation PTFlipsideViewController
 
-
 - (BOOL) prefersStatusBarHidden {
     return YES;
 }
@@ -61,6 +60,15 @@
     }
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        [PTUtilities archiveScannedDocs:_appDelegate.scannedDocuments];
+//    });
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -71,10 +79,6 @@
 
 - (void)handleRightSwipe:(UITapGestureRecognizer *)recognizer
 {
-    if (_cropping) {
-        return;
-    }
-    
     if (*_index > 0) {
         (*_index)--;
     }
@@ -87,10 +91,6 @@
 
 - (void)handleLeftSwipe:(UITapGestureRecognizer *)recognizer
 {
-    if (_cropping) {
-        return;
-    }
-    
     NSInteger last = [_appDelegate.scannedDocuments count] - 1;
     if (*_index < last) {
         (*_index)++;
@@ -106,86 +106,59 @@
 
 - (IBAction)done:(id)sender
 {
-    self.cropping = NO;
+    [_appDelegate.scannedDocuments replaceObjectAtIndex:*_index withObject:_currImage];
     
-    _appDelegate = [[UIApplication sharedApplication] delegate];
-    
-    if (_cropView)
-    {
-        UIImage *newImage = [self cropImage:_currImage];
-        
-        [_imageView setImage:newImage];
-        
-        NSInteger index = [_appDelegate.scannedDocuments indexOfObject:_currImage];
-        
-        [_appDelegate.scannedDocuments replaceObjectAtIndex:index withObject:newImage];
-        
-        [PTUtilities archiveScannedDocs:_appDelegate.scannedDocuments];
-    }
-    
-    self.cropView = nil;
-
     [self.delegate flipsideViewControllerDidFinish:self];
 }
 
 - (IBAction)crop:(id)sender
 {
-    self.cropping = YES;
+    CGRect frame = [[UIScreen mainScreen] bounds];
     
-    if (_cropView == nil)
-    {
-        CGRect rect = _imageView.frame;
-        
-        self.cropView = [[PTCroppingView alloc] initWithFrame:rect];
-        
-        [_cropView setBackgroundColor:[UIColor clearColor]];
-        
-        [self.view addSubview:_cropView];
-    }
-}
+    // image size
+    CGFloat imgWidth = _imageView.image.size.width;
+    CGFloat imgHeight = _imageView.image.size.height;
+    
+    CGFloat ratioX = imgWidth / frame.size.width;
+    CGFloat ratioY = imgHeight / frame.size.height;
+    
+    CGFloat ratio = MAX(ratioX, ratioY);
 
-- (UIImage *)cropImage:(UIImage *)image {
-    double ratio;
-    double delta;
-    CGPoint offset;
+    CGFloat scrWidth = frame.size.width * ratio;
+    CGFloat scrHeight = frame.size.height * ratio;
     
-    CGFloat width = _cropView.right - _cropView.left;
-    CGFloat height = _cropView.bottom - _cropView.top;
+    CGFloat marginLeft = (scrWidth - imgWidth) / 2;
+    CGFloat marginTop = (scrHeight - imgHeight) / 2;
     
-    //make a new square size, that is the resized imaged width
-    CGSize sz = CGSizeMake(width, height);
+    CGFloat left = _croppingView.left * ratio - marginLeft;
+    CGFloat top = marginTop - _croppingView.top * ratio;
     
-    //figure out if the picture is landscape or portrait, then
-    //calculate scale factor and offset
-    if (image.size.width > image.size.height) {
-        ratio = height / image.size.width;
-        delta = (ratio*image.size.width - ratio*image.size.height);
-        offset = CGPointMake(delta/2, 0);
-    } else {
-        ratio = width / image.size.height;
-        delta = (ratio*image.size.height - ratio*image.size.width);
-        offset = CGPointMake(0, delta/2);
+    // cropping size
+    CGFloat croWidth = _croppingView.right - _croppingView.left;
+    CGFloat croHeight = _croppingView.bottom - _croppingView.top;
+    
+    CGFloat width = croWidth * ratio;
+    CGFloat height = croHeight * ratio;
+    
+    if (self.currImage != nil)
+    {
+        CGRect CropRect = CGRectMake(left, top, width, height);
+        
+        CGImageRef imageRef = CGImageCreateWithImageInRect([self.currImage CGImage], CropRect);
+        
+        self.currImage = [UIImage imageWithCGImage:imageRef];
+        
+        CGImageRelease(imageRef);
+        
+        self.imageView.image = _currImage;
+        
+        //////////////////////////////////////////////
+        //
+        // NOTE: I am not saving the new image yet.
+        // You can UNDO by swipping back.
+        //
+        //////////////////////////////////////////////
     }
-    
-    //make the final clipping rect based on the calculated values
-    CGRect clipRect = CGRectMake(-offset.x, -offset.y,
-                                 (ratio * image.size.width) + delta,
-                                 (ratio * image.size.height) + delta);
-    
-    
-    //start a new context, with scale factor 0.0 so retina displays get
-    //high quality image
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
-        UIGraphicsBeginImageContextWithOptions(sz, YES, 0.0);
-    } else {
-        UIGraphicsBeginImageContext(sz);
-    }
-    UIRectClip(clipRect);
-    [image drawInRect:clipRect];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return newImage;
 }
 
 #pragma mark -

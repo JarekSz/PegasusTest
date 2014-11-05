@@ -12,6 +12,7 @@
 
 @interface PTMainViewController ()
 
+@property (strong, nonatomic) IBOutlet UIButton *existingButton;
 
 @end
 
@@ -34,18 +35,29 @@
     if ([_appDelegate.scannedDocuments count] > 0) {
         _currIndex = [_appDelegate.scannedDocuments count] - 1;
     }
+    
+    _existingButton.layer.cornerRadius = 8.0;
+    _existingButton.layer.masksToBounds = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    if (_currIndex >= 0) {
-        self.currImage = [_appDelegate.scannedDocuments objectAtIndex:_currIndex];
-        
-        if (_currImage) {
-            _imageView.image = _currImage;
-        }
+    self.currImage = [_appDelegate.scannedDocuments objectAtIndex:_currIndex];
+    
+    if (_currImage) {
+        _imageView.image = _currImage;
+    }
+}
+
+- (void)updateImage:(UIImage *)image atIndex:(NSInteger)index
+{
+    self.currIndex = index;
+    self.currImage = image;
+    
+    if (_currImage) {
+        _imageView.image = _currImage;
     }
 }
 
@@ -53,7 +65,6 @@
 {
     [super viewWillDisappear:animated];
     
-    [PTUtilities archiveScannedDocs:_appDelegate.scannedDocuments];
 }
 
 - (void)didReceiveMemoryWarning
@@ -155,13 +166,18 @@
     _currIndex = [_appDelegate.scannedDocuments count] - 1;
 }
 
+#pragma mark -
+#pragma mark BASIC FUNCTIONALITY
+
 - (IBAction)convertToGray:(id)sender
 {
     UIImage *bwImage = [self convertToGreyscale:_currImage];
     
     _imageView.image = bwImage;
     
-    _currIndex = [_appDelegate.scannedDocuments indexOfObject:_currImage];
+    [_appDelegate.scannedDocuments addObject:bwImage];
+    
+    _currIndex = [_appDelegate.scannedDocuments count] - 1;
     
     [_appDelegate.scannedDocuments replaceObjectAtIndex:_currIndex withObject:bwImage];
 }
@@ -177,7 +193,39 @@
     _imageView.image = [_appDelegate.scannedDocuments objectAtIndex:_currIndex];
 }
 
-- (UIImage *) convertToGreyscale:(UIImage *)i {
+- (IBAction)Email:(id)sender
+{
+    MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+    
+    picker.mailComposeDelegate = self;
+    
+    [picker setSubject:@"Pegasus Test"];
+    
+    NSArray *recipients = [NSArray arrayWithObjects:@"jszymczyk@comcast.net", nil];
+    
+    [picker setToRecipients:recipients];
+    
+    NSData *imageData = UIImageJPEGRepresentation(_currImage, 0.05f);
+    
+    [picker addAttachmentData:imageData mimeType:@"image/png" fileName:@"doc.png"];
+    
+    [self presentViewController:picker animated:YES completion:nil];
+    
+    picker = nil;
+}
+
+-(void)mailComposeController:(MFMailComposeViewController *)mailer
+         didFinishWithResult:(MFMailComposeResult)result
+                       error:(NSError *)error
+{
+    [self becomeFirstResponder];
+    [mailer dismissViewControllerAnimated:NO completion:nil];
+}
+
+#pragma mark -
+#pragma mark convert to greyscale
+
+- (UIImage *)convertToGreyscale:(UIImage *)i {
     
     int kRed = 1;
     int kGreen = 2;
@@ -238,35 +286,5 @@
     
     return resultUIImage;
 }
-
-- (IBAction)Email:(id)sender
-{
-	MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
-    
-	picker.mailComposeDelegate = self;
-	
-	[picker setSubject:@"Pegasus Test"];
-	
-    NSArray *recipients = [NSArray arrayWithObjects:@"jszymczyk@comcast.net", nil];
-    
-    [picker setToRecipients:recipients];
-    
-    NSData *imageData = UIImageJPEGRepresentation(_currImage, 0.05f);
-
-    [picker addAttachmentData:imageData mimeType:@"image/png" fileName:@"doc.png"];
-    
-	[self presentViewController:picker animated:YES completion:nil];
-    
-    picker = nil;
-}
-
--(void)mailComposeController:(MFMailComposeViewController *)mailer
-         didFinishWithResult:(MFMailComposeResult)result
-                       error:(NSError *)error
-{
-    [self becomeFirstResponder];
-    [mailer dismissViewControllerAnimated:NO completion:nil];
-}
-
 
 @end

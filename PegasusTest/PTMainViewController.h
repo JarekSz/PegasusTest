@@ -11,13 +11,18 @@
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
 
+@class PTAppDelegate;
+@class PTFlipsideViewController;
 
-@interface PTMainViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate,PTFlipsideViewControllerDelegate, MFMailComposeViewControllerDelegate>
+
+@interface PTMainViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, weak) PTAppDelegate *appDelegate;
 @property (nonatomic, strong) PTFlipsideViewController *flipsideView;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) UIImage *currImage;
-@property NSInteger currIndex;
+@property NSUInteger currIndex;
+
+- (void)updateImage:(UIImage *)image atIndex:(NSInteger)index;
 
 @end

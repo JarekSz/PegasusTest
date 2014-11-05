@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PTMainViewController.h"
+
+@class PTMainViewController;
 
 @interface PTAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSMutableArray *scannedDocuments;
+@property (nonatomic, weak) PTMainViewController* initialViewController;
 
 @end

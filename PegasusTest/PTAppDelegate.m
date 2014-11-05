@@ -8,6 +8,7 @@
 
 #import "PTAppDelegate.h"
 #import "PTUtilities.h"
+#import "PTMainViewController.h"
 
 
 @implementation PTAppDelegate
@@ -15,11 +16,26 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    _scannedDocuments = [PTUtilities unarchiveScannedDocs];
     
-    if (_scannedDocuments == nil) {
-        self.scannedDocuments = [[NSMutableArray alloc] init];
-    }
+//    UIStoryboard *storybord = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    _main = (PTMainViewController *)[storybord instantiateInitialViewController];
+    self.initialViewController = (PTMainViewController *)self.window.rootViewController;
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        _scannedDocuments = [PTUtilities unarchiveScannedDocs];
+        
+        if (_scannedDocuments == nil) {
+            self.scannedDocuments = [[NSMutableArray alloc] init];
+        }
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            if ([_scannedDocuments count] > 0) {
+                UIImage *image = [_scannedDocuments lastObject];
+                NSInteger index = [_scannedDocuments count] - 1;
+                [_initialViewController updateImage:image atIndex:index];
+            }
+        });
+    });
     
     return YES;
 }
@@ -28,6 +44,9 @@
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [PTUtilities archiveScannedDocs:_scannedDocuments];
+    });
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
