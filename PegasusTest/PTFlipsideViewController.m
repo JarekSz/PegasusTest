@@ -105,25 +105,29 @@
 
 - (IBAction)crop:(id)sender
 {
-    CGRect frame = [[UIScreen mainScreen] bounds];
-    
+//    CGRect frame = [[UIScreen mainScreen] bounds];
+//    
     // image size
-    CGFloat imgWidth = _imageView.image.size.width;
-    CGFloat imgHeight = _imageView.image.size.height;
+    CGFloat imgWidth = _currImage.size.width;
+    CGFloat imgHeight = _currImage.size.height;
     
-    CGFloat ratioX = imgWidth / frame.size.width;
-    CGFloat ratioY = imgHeight / frame.size.height;
+    // view size
+    CGFloat viewWidth = _imageView.frame.size.width;
+    CGFloat viewHeight = _imageView.frame.size.height;
+    
+    CGFloat ratioX = imgWidth / viewWidth;
+    CGFloat ratioY = imgHeight / viewHeight;
     
     CGFloat ratio = MAX(ratioX, ratioY);
 
-    CGFloat scrWidth = frame.size.width * ratio;
-    CGFloat scrHeight = frame.size.height * ratio;
+//    CGFloat scrWidth = frame.size.width * ratio;
+//    CGFloat scrHeight = frame.size.height * ratio;
     
-    CGFloat marginLeft = (scrWidth - imgWidth) / 2;
-    CGFloat marginTop = (scrHeight - imgHeight) / 2;
+    CGFloat marginLeft = (imgWidth - viewWidth) / 2;
+    CGFloat marginTop = (imgHeight - viewHeight) / 2;
     
-    CGFloat left = _croppingView.left * ratio - marginLeft;
-    CGFloat top = marginTop - _croppingView.top * ratio;
+    CGFloat left = _croppingView.left * ratio;
+    CGFloat top = _croppingView.top * ratio;
     
     // cropping size
     CGFloat croWidth = _croppingView.right - _croppingView.left;

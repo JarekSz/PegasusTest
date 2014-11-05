@@ -32,6 +32,9 @@
     
     _currIndex = -1;
     
+    if (_appDelegate.scannedDocuments == nil) {
+        _appDelegate.scannedDocuments = [[NSMutableArray alloc] init];
+    }
     if ([_appDelegate.scannedDocuments count] > 0) {
         _currIndex = [_appDelegate.scannedDocuments count] - 1;
     }
@@ -44,10 +47,12 @@
 {
     [super viewWillAppear:animated];
     
-    self.currImage = [_appDelegate.scannedDocuments objectAtIndex:_currIndex];
-    
-    if (_currImage) {
-        _imageView.image = _currImage;
+    if (_currIndex >= 0) {
+        self.currImage = [_appDelegate.scannedDocuments objectAtIndex:_currIndex];
+        
+        if (_currImage) {
+            _imageView.image = _currImage;
+        }
     }
 }
 
@@ -135,11 +140,6 @@
         // Show image picker
         [self presentViewController:imagePicker animated:YES completion:nil];
     }
-}
-
-- (IBAction)nameChanged:(id)sender
-{
-    //    _appDelegate.myDocument.title = _docTitle.text;
 }
 
 #pragma mark -
