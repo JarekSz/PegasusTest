@@ -105,8 +105,6 @@
 
 - (IBAction)crop:(id)sender
 {
-//    CGRect frame = [[UIScreen mainScreen] bounds];
-//    
     // image size
     CGFloat imgWidth = _currImage.size.width;
     CGFloat imgHeight = _currImage.size.height;
@@ -120,12 +118,6 @@
     
     CGFloat ratio = MAX(ratioX, ratioY);
 
-//    CGFloat scrWidth = frame.size.width * ratio;
-//    CGFloat scrHeight = frame.size.height * ratio;
-    
-    CGFloat marginLeft = (imgWidth - viewWidth) / 2;
-    CGFloat marginTop = (imgHeight - viewHeight) / 2;
-    
     CGFloat left = _croppingView.left * ratio;
     CGFloat top = _croppingView.top * ratio;
     
@@ -156,40 +148,5 @@
         //////////////////////////////////////////////
     }
 }
-
-#pragma mark -
-#pragma mark - Scale Image
-
-//////////////////////////////////////////////////////////////////////////////////////////////
-//
-// Images could be of different sizes and shapes. In order to show them nicely we need to
-// Resize each Image.
-//
-- (UIImage *)resizeImage:(UIImage*)image newSize:(CGSize)newSize
-{
-    CGRect newRect = CGRectIntegral(CGRectMake(0, 0, newSize.width, newSize.height));
-    CGImageRef imageRef = image.CGImage;
-    
-    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    // Set the quality level to use when rescaling
-    CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
-    CGAffineTransform flipVertical = CGAffineTransformMake(1, 0, 0, -1, 0, newSize.height);
-    
-    CGContextConcatCTM(context, flipVertical);
-    // Draw into the context; this scales the image
-    CGContextDrawImage(context, newRect, imageRef);
-    
-    // Get the resized image from the context and a UIImage
-    CGImageRef newImageRef = CGBitmapContextCreateImage(context);
-    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
-    
-    CGImageRelease(newImageRef);
-    UIGraphicsEndImageContext();
-    
-    return newImage;
-}
-
 
 @end
