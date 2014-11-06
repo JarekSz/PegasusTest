@@ -165,6 +165,7 @@
     
     [picker setSubject:@"Pegasus Test"];
     
+    //send it to my private email
     NSArray *recipients = [NSArray arrayWithObjects:@"jszymczyk@comcast.net", nil];
     
     [picker setToRecipients:recipients];

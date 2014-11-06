@@ -54,8 +54,6 @@
     CGContextAddLineToPoint(context, leftTop.x, leftTop.y);
 
     CGContextStrokePath(context);
-
-
 }
 
 - (void)initialize
